@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Entendendo jQuery</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src="js/jquery.js"></script>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>Entendendo jQuery</h1>
+    <div>1</div>
+    <div>2</div>
+
+    <script>
+        // ...
+        $('div').hide(5000).show(5000).fadeOut(5000) // uma unica chamada ele pegou os 2 divs
+        console.log($('div').get(0)) // elemento DOM
+        console.log($.isEmptyObject()) // true
+        console.log(jQuery.inArray(3, [1, 2, 3])) //indice (que é 2) se o 3 estiver no array [1, 2 e 3]
+        
+        // criando um plugin
+        $.fn.fundoVerde = function () {
+            this.css('background-color', 'green')
+            return this //para encadear chamadas
+        }
+
+        $('body').fundoVerde().fadeOut(1000)
+    </script>
+</body>

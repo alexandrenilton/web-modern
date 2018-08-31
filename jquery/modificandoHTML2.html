@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Modificando HTML #02</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src='js/jquery.js'></script>
+</head>
+
+<body class='conteudo exercicio'>
+    <h1>Modificando HTML #02</h1>
+    <div id='div1'>1</div>
+    <div id='div2'>2</div>
+    <div id='div3'>3</div>
+    <p class='numero'>4</p>
+    <p class='numero'>5</p>
+
+    <script>
+        // ...
+        $('#div1').append(', 2')
+        $('#div1').prepend('0, 1')
+        
+        $('<span>, 3</span>').appendTo('#div1')
+        $('<span>-1, </span>').prependTo('#div1')
+
+        $('#div2').before('<p>Antes 2</p>')
+        $('#div2').after('<p>Depois 2</p>')
+
+        $('<p>Antes 3</p>').insertBefore('#div3')
+        $('<p>Depois 3</p>').insertAfter('#div3')
+
+        //vai envolver os elementos na div
+        //$('p.numero').wrap('<div>')
+        $('p.numero').wrapAll('<div id="div4" >') //coloca todos elementos dentro de um div só
+        $('#div4').empty() //limpar o conteudo
+        $('#div3, #div4').prev().remove() // selecione a div3 e div4 e o anterior e remove
+
+        // $('<div>Substituto</div>').replaceAll('body > p') // todos os paragrafos dentro de body, serão substituidos pelo <div>Substituto</div>
+        // $('body > p').replaceWith('<div>Substituto</div>')
+        $('body > p').replaceWith(function() {
+            return $('<div>').html($(this).html()).append("!!!")
+        })
+
+    </script>
+</body>

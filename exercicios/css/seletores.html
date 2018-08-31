@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>CSS Selectors</title>
+    <link rel="stylesheet" href="css/tag.css">
+    <style>
+        /* p ~ ol {  vai pegar o OL que esteja proximo de um p, q seja irmão, e não filho */
+        /* [feira] */
+            /* ou [feira~=casa] pega todos que tem o atributo feira, caso tenha feira, ela tem q ter o valor "casa" */
+            /* ou [feira*=sa] pega todos que tem o atributo feira com "sa" no valor % */
+
+        /* section > :nth-child(odd) ou even pega os filhos impares de uma section */
+        
+        { 
+            color: #ff0;
+            background-color: #f77;
+        }
+
+        p ~ h5 {
+            color: red;
+            background-color: teal;
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <div class='tag'>
+        <div class='tag'>
+            <p class='tag'>1</p>
+            <ul class='tag' feira='casa'>
+                <li>Arroz</li>
+                <li>Feijão</li>
+            </ul>
+            <ul class='tag' feira='escritorio empresa'>
+                <li>Café</li>
+                <li>Água</li>
+            </ul>
+            <ol id='aprovados' class='tag'>
+                <li>Maria</li>
+                <li>Pedro</li>
+                <li>Ana</li>
+            </ol>
+            
+            <h5 class="tag">Isso é um h5</h5>
+
+            <div id='aninhado' class='tag'>
+                <div class="tag">
+                    <section class='tag'>
+                        <span class='tag'>1</span>
+                        <p class='tag'>2</p>
+                        <span class='tag'>3</span>
+                        <p class='tag'>4</p>
+                        
+                    </section>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/tag.js"></script>
+</body>
+
+</html>

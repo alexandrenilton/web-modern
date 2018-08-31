@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='UTF-8'>
+    <title>Ajax com jQuery</title>
+    <link rel='stylesheet' href='css/estilo.css'>
+    <script src="js/jquery.js"></script>
+</head>
+
+<body class="conteudo exercicio">
+    <h1>jQuery Get/Post</h1>
+    <div id="get"></div>
+    <div id="post"></div>
+
+    <script>
+        // ... Jquery usa callback, um recurso mais antigo que as promises e await
+        function showResult(id, data) {
+            const text = JSON.stringify(data)
+            document.getElementById(id).innerHTML = text
+        }
+
+        $.ajax({
+            url: 'parOuImpar',
+            data: {
+                numero: 5
+            },
+            success(data) {
+                showResult('get', data)
+            }
+        })
+
+        $.ajax({
+            url: 'formulario',
+            // url: 'formulario2', // so para dar erro e testar o error(e)
+            method: 'post',
+            data: {
+                nome: 'João',
+                sobrenome: 'Silva',
+                idade: 40
+            },
+            success(data) {
+                showResult('post', data)
+            },
+            error(e) {
+                showResult('post', e)
+            }
+        })
+
+
+    </script>
+</body>

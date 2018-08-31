@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <title>Desafio Menu</title>
+    <link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
+    <style>
+        
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Oswald', sans-serif;
+            background-color: lightgray;
+        }
+
+        .cabecalho {
+            background-color: #1C2831;
+            border-bottom: solid 5px #658996;
+            height: 80px;
+            box-sizing: content-box;
+        }
+        
+        .logo {
+            display: inline-block;
+            height: 80px;
+            padding: 15px;
+        }
+
+        .logo img {
+            height: 100%; /* vai ocupar 100% da area destinado a ele, no caso, vai ter q diminuir para nao ultrapassar a area. Area definida em .logo (80px de height) */
+        }
+
+        .menu-toggle {
+            float: right;
+            color: #eee;
+            background-color: #362E28;
+            border: solid 1px #787858;
+            border-radius: 5px;
+            height: 40px;
+            padding: 10px 20px;
+            margin: 20px 15px;
+        }
+
+        .menu {
+            display: inline-block;
+            vertical-align: top;
+            height: 80px;
+            padding: 25px;
+        }
+
+        .menu ul {
+            margin: 0;
+            padding: 0;
+        }
+
+        .menu li {
+            display: inline-block;
+        }
+
+        .cabecalho a {
+            text-decoration: none;
+            color: #84AE9F;
+            font-size: 1.3em;
+        }
+        
+        .menu a {
+            padding: 15px;
+        }
+
+        .menu a:hover, 
+        .menu a.selected {
+            background-color: #387D5D;
+        }
+
+        .autenticacao {
+            float: right;
+            height: 80px;
+            padding: 25px;
+        }
+
+        .botao {
+            border-radius: 30px;
+            padding: 10px 25px;
+            margin: 10px
+        }
+        
+        .destaque {
+            background: #f50a31;
+        }
+
+        @media(min-width: 679px) {
+            .menu-toggle {
+                display: none;
+            }
+        }
+
+        @media(max-width: 680px) {
+            .menu {
+                display: none;
+            }
+            .autenticacao {
+                display: none;
+            }
+        }
+
+        @media(max-width: 910px) {
+            .autenticacao {
+                display: none;
+            }
+        }
+
+
+
+    </style>
+</head>
+
+<body>
+    <header class="cabecalho">
+        <div class="logo">
+            <a href="#inicio">
+                <img src="http://files.cod3r.com.br/curso-web/logo.png" alt="Logo" />
+            </a>
+        </div>
+        <button class="menu-toggle">
+            <i class="fa fa-lg fa-bars"></i>
+        </button>
+        <nav class="menu">
+            <ul>
+                <li>
+                    <a href="#inicio">Início</a>
+                </li>
+                <li>
+                    <a href="#cursos">Cursos</a>
+                </li>
+                <li>
+                    <a href="#sobre">Sobre</a>
+                </li>
+                <li>
+                    <a href="#contato">Contato</a>
+                </li>
+            </ul>
+        </nav>
+        <aside class="autenticacao">
+            <a href="#login">Login</a>
+            <a href="#registar" class="botao destaque">Registrar</a>
+        </aside>
+    </header>
+
+    <script>
+        // The onhashchange event occurs when there has been changes to the anchor part (begins with a '#' symbol) of the current URL.
+        window.onhashchange = function(e) {
+            const oldURL = e.oldURL.split('#')[1];
+            const newURL = e.newURL.split('#')[1];
+            console.log(oldURL, newURL);
+            //selecionando os menus antigo e novo
+            const oldLink = document.querySelector(`.menu a[href='#${oldURL}']`);
+            const newLink = document.querySelector(`.menu a[href='#${newURL}']`);
+            
+            // remove a classe selected 
+            oldLink && oldLink.classList.remove('selected'); 
+            newLink && newLink.classList.add('selected');
+        }
+
+        
+
+    </script>
+</body>
+
+</html>

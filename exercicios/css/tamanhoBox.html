@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Tamanho Box</title>
+    <style>
+
+        * {
+            box-sizing: border-box; /* declarando globalmente */ 
+        }
+
+        body {
+            font-size: 45px;
+            margin: 0;
+        }
+
+        div {
+            background-color: deepskyblue;
+            width: 100%;
+            height: 300px;
+            padding: 100px;
+            border: solid 20px;
+            box-sizing: context-box; /* default, soma tudo, passa dos 100% e 300px */
+            box-sizing: border-box; /* considera tudo para ter os 100% e os 300px; */ 
+        }
+        
+        
+    </style>
+</head>
+<body>
+    <div>
+        O tamanho do Box é...
+    </div>
+</body>
+</html>
