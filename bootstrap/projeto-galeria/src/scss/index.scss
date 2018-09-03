@@ -1,0 +1,8 @@
+@import "~bootstrap/scss/bootstrap";
+
+//reescreve onde está o font-awesome
+$fa-font-path: "~font-awesome/fonts";
+@import "~font-awesome/scss/font-awesome";
+
+//importa o custom.scss que criei
+@import "custom";
