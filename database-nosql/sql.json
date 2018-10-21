@@ -1,0 +1,52 @@
+db.estados.find()
+db.estados.find().pretty()
+db.estados.findOne()
+db.estados.findOne({sigla: "RJ"})
+db.estados.find({$or: [{sigla: "RJ"}, {sigla: "AC"}]}).pretty()
+db.estados.find({populacao: {$exists: true}}).pretty()
+db.estados.find().skip(1).limit(2)
+db.estados.count()
+db.estados.find({sigla: "SP"}, {nome: 1, sigla: 1, _id: 0})
+db.estados.find({sigla: "SP"}, {"cidades.nome": 1, _id: 0})
+
+
+db.estados.aggregate([
+    { $project: {nome: 1, "cidades.nome": 1, _id: 0} }
+])
+
+db.estados.aggregate([
+    { $project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0} },
+    { $group: {_id: null, populacaoTotal: {$sum: "$populacao" }} },
+    { $project: { _id: 0, populacaoTotal: 1 } },
+])
+
+db.estados.aggregate([
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $unwind: "$cidades"},
+    { $match: {"cidades.nome": "Sorocaba"} },
+    { $project: {_id: "$cidades._id"} }
+]).pretty()
+
+
+
+// $project, vai fazer um filtro de quais colunas eu quero pra ir para o proximo pipe.
+
+db.estados.aggregate([
+    { $project: {nome: 1, "cidades.nome": 1, _id: 0}}  // ou seja, quais os dados que eu quero que sejam passados para frente.
+])
+
+
+db.estados.aggregate([
+    { $project: {populacao: {$sum: "$cidades.populacao"}, sigla: 1, _id: 0} },
+    { $group: {_id: null, populacaoTotal: {$sum: "$populacao" }} },
+    { $project: { _id: 0, populacaoTotal: 1} },
+])
+
+
+// unwind vai desenrolar, se vc tem varias cidades dentro de um estado, com o unwind é possivel ter um estado para cada cidade (mesmo q repita)
+db.estados.aggregate([
+    { $match: { "cidades.nome" : "Sorocaba"} },
+    { $unwind: "$cidades"}, 
+    { $match: { "cidades.nome" : "Sorocaba"} },
+    { $project: {_id: "$cidades._id"}}
+]).pretty()
